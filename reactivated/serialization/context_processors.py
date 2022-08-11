@@ -49,6 +49,15 @@ class StaticProcessor(NamedTuple):
     STATIC_URL: str
 
 
+class User(NamedTuple):
+    email: str
+    is_authenticated: bool
+
+
+class AuthProcessor(NamedTuple):
+    user: User
+
+
 TYPE_HINTS = {
     "django.template.context_processors.request": {"return": RequestProcessor},
     "django.template.context_processors.csrf": {"return": CSRFProcessor},
@@ -56,6 +65,9 @@ TYPE_HINTS = {
     "django.contrib.messages.context_processors.messages": {
         "return": MessagesProcessor
     },
+    "django.contrib.auth.context_processors.auth": {
+        "return": AuthProcessor
+    }
 }
 
 
